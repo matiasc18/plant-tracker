@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Features:
 - Maintain list of known plant species in [TBD location]
-- Caching supports use of PWA completely offline
+- Offline-friendly
 - Search for species
 - Create tracking private list of species
 - Add new species to list
