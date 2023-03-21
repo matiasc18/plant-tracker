@@ -1,9 +1,13 @@
 import styles from '@/styles/Home.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useState } from 'react'
 
-export default function ListElement() {
+export default function ListElement({ plantName }) {
+  const [isActive, setIsActive] = useState(false);
+
   return (
-    <div>
+    <Link href="/plants/[plantName]" as={`/plants/${plantName}`} className={`${styles.listItem} ${isActive ? styles.active : ''}`} onClick={() => setIsActive(true)}>
       <Image
         src="/plant-image.jpeg"
         alt="My Image"
@@ -11,7 +15,7 @@ export default function ListElement() {
         height={50}
         className={styles.image}
       />
-      <p>Plant name</p>
-    </div>
+      <p>{plantName}</p>
+    </Link>
   )
 };
