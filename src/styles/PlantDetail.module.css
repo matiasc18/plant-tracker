@@ -1,0 +1,39 @@
+.plantDetail {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 12.5px 15px;
+  gap: 10px;
+}
+
+.photoBox {
+  aspect-ratio: 16/9;
+  max-width: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.transect {
+  align-self: center;
+}
+
+.plantDetail hr {
+  max-width: 100%;
+  border: 1px solid var(--main-color);
+}
+
+/* .description {
+
+} */
+
+.learnMore {
+  text-decoration: none;
+  color: var(--main-color);
+  border-radius: var(--border-radius);
+  background-color: rgb(240, 240, 240);
+  width: fit-content;
+  padding: 5px 10px;
+  align-self: center;
+}
