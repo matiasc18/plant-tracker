@@ -1,13 +1,25 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
-import navStyles from '@/styles/Nav.module.css'
-import { GiHamburgerMenu } from 'react-icons/gi'
-import ListElement from '@/components/listElement'
-import SearchBar from '@/components/searchBar'
-// import { motion } from 'framer-motion'
+import Nav from '@/components/nav'
+import List from '@/components/list'
+import { useEffect, useState, useRef } from 'react'
+import PlantDetails from '@/components/plantDetails'
 
 export default function Home() {
-  const names = ['sussy plant', 'ginger\'s plant', 'corriander', 'poison ivy', 'green plant', 'cactus', 'fern', 'wild bush'];
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [plantName, setPlantName] = useState(null);
+  const plantDetailsRef = useRef(null);
+
+  useEffect(() => {
+    if (isDetailsOpen)
+      plantDetailsRef.current.scrollTop = 0;
+  }, [isDetailsOpen]);
+
+  function handleDetails(plantName) {
+    if (plantName != null)
+      setPlantName(plantName);
+    setIsDetailsOpen(!isDetailsOpen);
+  }
 
   return (
     <>
@@ -15,19 +27,11 @@ export default function Home() {
         <title>Create Next App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <nav className={navStyles.nav}>
-        <GiHamburgerMenu className={navStyles.menu} />
-      </nav>
-      <main className={styles.main}>
-        <div className={styles.landing}>
-          <SearchBar />
-          {names.map(item => (
-            <div key={item}>
-              <ListElement plantName={item} />
-            </div>
-          ))}
-        </div>
+      <Nav isOpen={isDetailsOpen} handleDetails={handleDetails} plantName={plantName} />
+      <main className={`${styles.main} ${isDetailsOpen ? styles.hideList : ''}`}>
+        <List handleDetails={handleDetails} isOpen={isDetailsOpen} />
       </main>
+      <PlantDetails ref={plantDetailsRef} plantName={plantName} isOpen={isDetailsOpen} plantDetailsRef={plantDetailsRef} />
     </>
   )
 }
