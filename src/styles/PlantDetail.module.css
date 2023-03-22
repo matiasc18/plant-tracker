@@ -1,9 +1,26 @@
 .plantDetail {
   display: flex;
   flex-direction: column;
+  width: 100%;
   max-width: 100%;
-  margin: 12.5px 15px;
+  padding: 12.5px 15px;
   gap: 10px;
+  position: fixed;
+  top: 60px;
+  left: 100%;
+  transition: transform 0.3s ease-in-out;
+  z-index: 500;
+  background-color: white;
+  height: 100%;
+  max-height: calc(100% - 60px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-bottom: 10px;
+}
+
+.plantDetail.plantDetailOpen {
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%);
 }
 
 .photoBox {
